@@ -132,5 +132,15 @@ INSERT INTO Cliente (ID_Cliente, Nome, Cognome, Data_Nascita, Email, Codice_Iscr
 (19, 'Federico', 'Conti', '1985-06-03', 'federico.conti@email.com', 19),
 (20, 'Giulia', 'Bellini', '1990-01-11', 'giulia.bellini@email.com', 20);
 
+-- Prima Query: Visualizzare i nomi dei clienti iscritti ad almeno un corso
+Select Nome, Cognome 
+From Cliente 
+Where Codice_Iscrizione Is Not Null;
 
--- Query da Eseguire nel Terminale Codespaces(sqlite3 mydb.sqlite < esercitazione.sql poi sqlite3 mydb.sqlite e ora posso eseguire le quesry che voglio)
+-- Seconda Query: Mostrare tutti i corsi con il nome del rispettivo istruttore
+SELECT 
+    Corso.Nome AS Corso, 
+    Istruttore.Nome AS Nome_Istruttore, 
+    Istruttore.Cognome AS Cognome_Istruttore
+FROM Corso
+JOIN Istruttore ON Corso.Codice_Istruttore = Istruttore.Codice_Identificativo;
