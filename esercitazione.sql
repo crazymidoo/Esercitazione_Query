@@ -1,53 +1,70 @@
--- Creazione Tabelle da Modello E-R
-Drop Table If Exists Cliente;
-Drop Table If Exists Iscrizione;
+DROP TABLE IF EXISTS Cliente;
+DROP TABLE IF EXISTS Iscrizione;
+DROP TABLE IF EXISTS Corso;
+DROP TABLE IF EXISTS Istruttore;
 
+-- Creazione Tabella Istruttore
+CREATE TABLE Istruttore(
+    Codice_Identificativo INT PRIMARY KEY,
+    Nome VARCHAR(50) NOT NULL,
+    Cognome VARCHAR(50) NOT NULL,
+    Specializzazione VARCHAR(80) NOT NULL
+);
 
--- Creazione Tabella Cliente
-Create Table Cliente(
-    ID_Cliente Int Primary Key,
-    Nome Varchar(50) Not Null,
-    Cognome Varchar(50) Not Null,
-    Data_Nascita Date Not Null,
-    Email Varchar(50) Not Null,
-    Codice_Iscrizione Int,
-    Foreign Key(Codice_Iscrizione) references Iscrizione(ID_Iscrizione)
+-- Creazione Tabella Corso
+CREATE TABLE Corso(
+    Codice INT PRIMARY KEY,
+    Nome VARCHAR(50) NOT NULL,
+    Descrizione VARCHAR(200) NOT NULL,
+    Codice_Istruttore INT,
+    FOREIGN KEY (Codice_Istruttore) REFERENCES Istruttore(Codice_Identificativo)
 );
 
 -- Creazione Tabella Iscrizione
-Create Table Iscrizione(
-    ID_Iscrizione Int Primary Key,
-    Data_Iscrizione Date Not Null,
-    Quota_Pagata Int Not Null,
-    Codice_Corso Int,
-    Foreign Key(Codice_Corso) references Corso(Codice)
-)
+CREATE TABLE Iscrizione(
+    ID_Iscrizione INT PRIMARY KEY,
+    Data_Iscrizione DATE NOT NULL,
+    Quota_Pagata INT NOT NULL,
+    Codice_Corso INT,
+    FOREIGN KEY(Codice_Corso) REFERENCES Corso(Codice)
+);
 
+-- Creazione Tabella Cliente
+CREATE TABLE Cliente(
+    ID_Cliente INT PRIMARY KEY,
+    Nome VARCHAR(50) NOT NULL,
+    Cognome VARCHAR(50) NOT NULL,
+    Data_Nascita DATE NOT NULL,
+    Email VARCHAR(50) NOT NULL,
+    Codice_Iscrizione INT,
+    FOREIGN KEY(Codice_Iscrizione) REFERENCES Iscrizione(ID_Iscrizione)
+);
 
-INSERT INTO Iscrizione (ID_Iscrizione, Data_Iscrizione, Quota_Pagata, CodiceCorso) VALUES
-(1, '2023-01-10', 150, 101),
-(2, '2023-02-15', 200, 102),
-(3, '2023-03-20', 250, 103),
-(4, '2023-04-05', 180, 104),
-(5, '2023-05-12', 220, 105),
-(6, '2023-06-01', 160, 106),
-(7, '2023-06-20', 140, 107),
-(8, '2023-07-07', 210, 108),
-(9, '2023-07-22', 230, 109),
-(10, '2023-08-15', 190, 110),
-(11, '2023-09-01', 200, 111),
-(12, '2023-09-12', 170, 112),
-(13, '2023-10-05', 220, 113),
-(14, '2023-10-15', 210, 114),
-(15, '2023-11-02', 240, 115),
-(16, '2023-11-18', 180, 116),
-(17, '2023-12-01', 160, 117),
-(18, '2023-12-10', 190, 118),
-(19, '2023-12-20', 230, 119),
-(20, '2024-01-05', 200, 120);
+-- Inserimento Istruttori
+INSERT INTO Istruttore (Codice_Identificativo, Nome, Cognome, Specializzazione) VALUES
+(1, 'Luca', 'Bianchi', 'Yoga'),
+(2, 'Marco', 'Rossi', 'Pilates'),
+(3, 'Anna', 'Verdi', 'Crossfit'),
+(4, 'Elena', 'Neri', 'Cardio'),
+(5, 'Paolo', 'Gialli', 'Sollevamento Pesi'),
+(6, 'Francesca', 'Moretti', 'Nuoto'),
+(7, 'Giovanni', 'Esposito', 'Ciclismo'),
+(8, 'Sara', 'Ferrari', 'Danza'),
+(9, 'Davide', 'Ricci', 'Arti Marziali'),
+(10, 'Chiara', 'Romano', 'Aerobica'),
+(11, 'Matteo', 'Fontana', 'Pilates'),
+(12, 'Laura', 'Costa', 'Yoga'),
+(13, 'Alessandro', 'Rinaldi', 'Crossfit'),
+(14, 'Elisa', 'Marini', 'Cardio'),
+(15, 'Roberto', 'Pellegrini', 'Nuoto'),
+(16, 'Valentina', 'Sartori', 'Danza'),
+(17, 'Simone', 'Gatti', 'Ciclismo'),
+(18, 'Martina', 'Barbieri', 'Aerobica'),
+(19, 'Federico', 'Conti', 'Arti Marziali'),
+(20, 'Giulia', 'Bellini', 'Sollevamento Pesi');
 
-
-INSERT INTO Corso (Codice, Nome, Descrizione, CodiceIstruttore) VALUES
+-- Inserimento Corsi
+INSERT INTO Corso (Codice, Nome, Descrizione, Codice_Istruttore) VALUES
 (101, 'Yoga Base', 'Corso di yoga per principianti', 1),
 (102, 'Pilates Avanzato', 'Pilates per livelli avanzati', 2),
 (103, 'Crossfit Intensivo', 'Allenamento crossfit ad alta intensità', 3),
@@ -68,3 +85,18 @@ INSERT INTO Corso (Codice, Nome, Descrizione, CodiceIstruttore) VALUES
 (118, 'Aerobica Base', 'Aerobica per principianti', 18),
 (119, 'Arti Marziali Avanzate', 'Tecniche avanzate di arti marziali', 19),
 (120, 'Pesi Base', 'Introduzione al sollevamento pesi', 20);
+
+-- Inserimento Iscrizioni
+INSERT INTO Iscrizione (ID_Iscrizione, Data_Iscrizione, Quota_Pagata, Codice_Corso) VALUES
+(1, '2023-01-10', 150, 101),
+(2, '2023-02-15', 200, 102),
+(3, '2023-03-20', 250, 103),
+(4, '2023-04-05', 180, 104),
+(5, '2023-05-12', 220, 105),
+(6, '2023-06-01', 160, 106),
+(7, '2023-06-20', 140, 107),
+(8, '2023-07-07', 210, 108),
+(9, '2023-07-22', 230, 109),
+(10, '2023-08-15', 190, 110),
+(11, '2023-09-01', 200, 111),
+(12, '2023-09-12
