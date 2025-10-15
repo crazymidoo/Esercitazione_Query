@@ -144,3 +144,39 @@ SELECT
     Istruttore.Cognome AS Cognome_Istruttore
 FROM Corso
 JOIN Istruttore ON Corso.Codice_Istruttore = Istruttore.Codice_Identificativo;
+
+
+-- Inizio 4 Query del Prof
+SELECT Cliente.ID_Cliente, Cliente.Nome, Cliente.Cognome,
+       Iscrizione.Quota_Pagata AS Totale
+FROM Cliente
+JOIN Iscrizione ON Cliente.Codice_Iscrizione = Iscrizione.ID_Iscrizione;
+
+
+
+SELECT Corso.Nome,
+       COUNT(Iscrizione.ID_Iscrizione) AS NUM
+FROM Corso
+LEFT JOIN Iscrizione ON Corso.Codice = Iscrizione.Codice_Corso
+GROUP BY Corso.Nome;
+
+
+
+SELECT Istruttore.Codice_Identificativo, Istruttore.Nome, Istruttore.Cognome,
+       COUNT(Corso.Codice) AS NUM
+FROM Istruttore
+LEFT JOIN Corso ON Istruttore.Codice_Identificativo = Corso.Codice_Istruttore
+GROUP BY Istruttore.Codice_Identificativo, Istruttore.Nome, Istruttore.Cognome
+ORDER BY NUM DESC;
+
+
+
+SELECT Cliente.ID_Cliente, Cliente.Nome, Cliente.Cognome,
+       Corso.Nome AS Corso,
+       Istruttore.Nome AS Nome_Istruttore,
+       Istruttore.Cognome AS Cognome_Istruttore
+FROM Cliente
+JOIN Iscrizione ON Cliente.Codice_Iscrizione = Iscrizione.ID_Iscrizione
+JOIN Corso ON Iscrizione.Codice_Corso = Corso.Codice
+JOIN Istruttore ON Corso.Codice_Istruttore = Istruttore.Codice_Identificativo
+WHERE Istruttore.Codice_Identificativo = 3;
