@@ -99,4 +99,38 @@ INSERT INTO Iscrizione (ID_Iscrizione, Data_Iscrizione, Quota_Pagata, Codice_Cor
 (9, '2023-07-22', 230, 109),
 (10, '2023-08-15', 190, 110),
 (11, '2023-09-01', 200, 111),
-(12, '2023-09-12
+(12, '2023-09-12', 170, 112),
+(13, '2023-10-05', 220, 113),
+(14, '2023-10-15', 210, 114),
+(15, '2023-11-02', 240, 115),
+(16, '2023-11-18', 180, 116),
+(17, '2023-12-01', 160, 117),
+(18, '2023-12-10', 190, 118),
+(19, '2023-12-20', 230, 119),
+(20, '2024-01-05', 200, 120);
+
+
+INSERT INTO Cliente (ID_Cliente, Nome, Cognome, Data_Nascita, Email, Codice_Iscrizione) VALUES
+(1, 'Mario', 'Rossi', '1985-04-12', 'mario.rossi@email.com', 1),
+(2, 'Luisa', 'Bianchi', '1990-07-23', 'luisa.bianchi@email.com', 2),
+(3, 'Carlo', 'Verdi', '1978-11-30', 'carlo.verdi@email.com', 3),
+(4, 'Anna', 'Neri', '1992-02-14', 'anna.neri@email.com', 4),
+(5, 'Paolo', 'Gialli', '1988-06-06', 'paolo.gialli@email.com', 5),
+(6, 'Francesca', 'Moretti', '1995-09-18', 'francesca.moretti@email.com', 6),
+(7, 'Giovanni', 'Esposito', '1980-01-25', 'giovanni.esposito@email.com', 7),
+(8, 'Sara', 'Ferrari', '1987-03-12', 'sara.ferrari@email.com', 8),
+(9, 'Davide', 'Ricci', '1993-12-10', 'davide.ricci@email.com', 9),
+(10, 'Chiara', 'Romano', '1991-08-22', 'chiara.romano@email.com', 10),
+(11, 'Matteo', 'Fontana', '1984-05-30', 'matteo.fontana@email.com', 11),
+(12, 'Laura', 'Costa', '1989-07-15', 'laura.costa@email.com', 12),
+(13, 'Alessandro', 'Rinaldi', '1996-10-09', 'alessandro.rinaldi@email.com', 13),
+(14, 'Elisa', 'Marini', '1992-11-02', 'elisa.marini@email.com', 14),
+(15, 'Roberto', 'Pellegrini', '1983-04-18', 'roberto.pellegrini@email.com', 15),
+(16, 'Valentina', 'Sartori', '1986-12-25', 'valentina.sartori@email.com', 16),
+(17, 'Simone', 'Gatti', '1994-03-14', 'simone.gatti@email.com', 17),
+(18, 'Martina', 'Barbieri', '1987-09-27', 'martina.barbieri@email.com', 18),
+(19, 'Federico', 'Conti', '1985-06-03', 'federico.conti@email.com', 19),
+(20, 'Giulia', 'Bellini', '1990-01-11', 'giulia.bellini@email.com', 20);
+
+
+-- Query da Eseguire nel Terminale Codespaces(sqlite3 mydb.sqlite < esercitazione.sql poi sqlite3 mydb.sqlite e ora posso eseguire le quesry che voglio)
